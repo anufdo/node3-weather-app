@@ -6,6 +6,7 @@ const express = require('express')
 const hbs =require('hbs')
 
 const app= express()
+const port =process.env.PORT || 3000
 
 // Define path for express config
 const publicDirctoryPath = path.join(__dirname,'../public')
@@ -87,7 +88,7 @@ app.get('*',(req,res)=>{
         name:'Anuradha Fernando'
     })
 })
-app.listen('3000',() => {
-    console.log('Applcation started at port 3000')
+app.listen(port,() => {
+    console.log('Applcation started at port '+port)
 })
 
