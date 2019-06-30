@@ -54,15 +54,19 @@ app.get('/weather',(req,res)=>{
               error
           })
         }
-        forecast(latitude,longitude,(error,{summary,temperature,probability}={})=>{
+        forecast(latitude,longitude,(error,{day0summary,temperature,probability,day0time}={})=>{
           if (error){
             return res.send({
                 error
             })
           }
-          const foracst= summary+' ' +temperature+'C. Rain probability '+ probability
+          const foracst= 'Temperature '+temperature+'c. Rain probability '+ probability                    
+          const day0Date= new Date(day0time*1000)
+          const today=  ' Today summary '+day0summary+'  => ' +(day0Date.getMonth()+1)+ '/'+ day0Date.getDate() 
+
           res.send({
             foracst,
+            today,
             location,
             address: req.query.address
         })
